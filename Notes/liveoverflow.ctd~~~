@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<cherrytree>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="0" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608962820.6" ts_lastsave="1608962934.57" unique_id="1">
+		<rich_text>Bin 0x01
+
+LiveOverflow goes over a basic Linux install and some commands. Nothing I'm not familiar with. However, I did learn two things. ll can replace ls -l, and piping standard output to hexdump will display it as a hex dump. Pretty simple stuff but it's easy to forget tiny commands like that when you don't use them on a regular basis.</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="1" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608962822.71" ts_lastsave="1608963053.72" unique_id="2">
+		<rich_text>Bin 0x02
+
+LiveOverflow goes into vim, and writing a simple C program that prints out arguments. I learned in this one that argc stands for argument count, and argv[] stands for argument vectors. I also learned how to compile in GCC with warnings by using the -Wall flag. </rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="2" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608963053.72" ts_lastsave="1608967768.21" unique_id="3">
+		<rich_text>Bin 0x03
+
+I learned how to handle command line arguments with Python in this one. This is super useful because if I ever want to make my own CLI hacking tools (or automation, for all I know) then I'll want to pass arguments instead of just changing source code if I'm going to be using it on a regular basis. Here's the code:
+
+import sys
+
+print(sys.argv)
+
+Simple as that. Sys.argv is an array. This is pretty awesome for me because it helps me visualize how CLI programs handle different parameters. Beforehand I was unsure why exactly some command calls were failing, but this helps a lot. </rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="3" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608967770.63" ts_lastsave="1609014668.61" unique_id="5">
+		<rich_text>0x04
+
+In this one he goes over a fictional writeup on manipulating a stock trading device. The writeup was featured in a CTF game about hacking, and it has a section that goes in depth about assembly language programming.
+
+Registers are like global variables within a program. They can be accessed anywhere within the assembly code. Just like global variables, we can store and retrieve data within these registers. Registers are used in many assembly instructions, but we need more than 16 variables. So, this is where memory comes in.  Memory is accessed either with loads and stores at addresses, as if it were a big array, or through PUSH and PO operations on a stack. 
+
+Control flow is done with GOTOs: jumps, branches, or calls. These instructions are jmp, jne, je, bne, be, and call. A jump is an unconditional GOTO. 
+
+Flags will give the status of the program, and are modified by certain instructions. For example, subtracting a number to zero will set the zero flag to 1. 
+
+To see the assembly instructions of a binary, use objdump -d ./binary</rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="4" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608967768.21" ts_lastsave="1608967770.63" unique_id="4">
+		<rich_text></rich_text>
+	</node>
+</cherrytree>
