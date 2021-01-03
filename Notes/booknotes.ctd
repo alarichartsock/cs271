@@ -744,9 +744,9 @@ each I/O call must go through several layers before it executes.
 </rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="Chapter 3" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601773208.48" ts_lastsave="1601826481.28" unique_id="14">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Chapter 3" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601773208.48" ts_lastsave="1609631962.34" unique_id="14">
 		<rich_text>Chapter 3 is focused on programming in x86 assembly.</rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="3.1 Basic Language Elements" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601826481.28" ts_lastsave="1601954793.19" unique_id="15">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="3.1 Basic Language Elements" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601826481.28" ts_lastsave="1609630230.37" unique_id="15">
 			<rich_text>addTwo program (adds two numbers together.)
 
 </rich_text>
@@ -815,12 +815,16 @@ Each integer expression must evaluate to an integer, which can be stored in 32 b
 Operator precedence refers to the implied order of operations when an expression contains two or more operators.  Example:
 
 4 + 5 * 2          Multiply, add
-12 -1 MOD 5     Modulus, subtract
+12 - 1 MOD 5     Modulus, subtract
 -5 + 2               Unary minus, add
 (4 + 2) * 6        Add, multiply
 
 </rich_text>
 			<rich_text justification="left"></rich_text>
+			<rich_text>
+
+</rich_text>
+			<rich_text weight="heavy">Real Number Literals</rich_text>
 			<rich_text>
 
 Real number literals are represented as either decimal reals or encoded (hexadecimal) reals. A decimal real contains an optional sign followed by an integer, a decimal point, an optional integer that expresses a fraction, and an optional exponent.
@@ -949,6 +953,18 @@ Single line comment ;
 NOP takes 1 byte of program storage, doesn't do any work. All it does is defer to the next instruction.
 
 </rich_text>
+			<rich_text weight="heavy">Section review</rich_text>
+			<rich_text>
+
+1. -35d, DDh, 335o, 11011101b
+2. No (a leading zero is required).
+3. No (they have the same precedence)
+4. Expression: 30 MOD (3 * 4) + (3 – 1) / 2 = 20
+5. Real number constant: -6.2E+04
+6. No, they can also be enclosed in double quotes.
+7. Directives
+8. 247 characters
+</rich_text>
 			<table char_offset="1331" col_max="1000" col_min="40">
 				<row>
 					<cell>()</cell>
@@ -981,7 +997,7 @@ NOP takes 1 byte of program storage, doesn't do any work. All it does is defer t
 					<cell>Precedence Level</cell>
 				</row>
 			</table>
-			<table char_offset="1597" col_max="1000" col_min="40">
+			<table char_offset="1598" col_max="1000" col_min="40">
 				<row>
 					<cell>16 / 5</cell>
 					<cell>3</cell>
@@ -1003,7 +1019,7 @@ NOP takes 1 byte of program storage, doesn't do any work. All it does is defer t
 					<cell>Value</cell>
 				</row>
 			</table>
-			<table char_offset="4408" col_max="1000" col_min="40">
+			<table char_offset="4431" col_max="1000" col_min="40">
 				<row>
 					<cell>MOV</cell>
 					<cell>Move (assign) one value to another</cell>
@@ -1033,7 +1049,7 @@ NOP takes 1 byte of program storage, doesn't do any work. All it does is defer t
 					<cell>Description</cell>
 				</row>
 			</table>
-			<table char_offset="4660" col_max="1000" col_min="40">
+			<table char_offset="4683" col_max="1000" col_min="40">
 				<row>
 					<cell>96</cell>
 					<cell>Integer Literal</cell>
@@ -1055,6 +1071,86 @@ NOP takes 1 byte of program storage, doesn't do any work. All it does is defer t
 					<cell>Operand Type</cell>
 				</row>
 			</table>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="3.2 Example: Adding and Subtracting Integers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1609630327.19" ts_lastsave="1609631926.63" unique_id="17">
+			<rich_text weight="heavy">Example program</rich_text>
+			<rich_text>
+
+Addtwo.asm
+
+Line 4 contains the .386 directive, which identifies it as a 32 bit program that can access 32 bit registers and addresses.
+Line 5 selects the program's memory model (flat), and identifies the calling convention (named stdcall) for procedures
+Line 7 declares a prototype for the ExitProcess function, which is a standard Windows service.
+
+ctr+shift+b will run the program in visual studio.
+
+</rich_text>
+			<rich_text weight="heavy">Debugging</rich_text>
+			<rich_text>
+
+Step into: the debugger will increment into the next instruction
+Step over: the debugger will increment into the next instruction, but if it involved a function call, then it will not move forward
+Step out: the debugger will keep incrementing until you are out of the function call
+
+</rich_text>
+			<rich_text weight="heavy">Program Template</rich_text>
+			<rich_text>
+
+
+
+Section Review:
+
+1. The INCLUDE directive copies necessary definitions and setup information from the Irvine32.inc text file. The data from this file are inserted into the data stream read by the assembler.
+2. The .code directive declares where the code is
+3. Code and data
+4. Eax
+5. INVOKE ExitProcess,0</rich_text>
+			<codebox char_offset="16" frame_height="250" frame_width="700" highlight_brackets="True" show_line_numbers="False" syntax_highlighting="sh" width_in_pixels="True">1: ; AddTwo.asm - adds two 32-bit integers
+2: ; Chapter 3 example
+3:
+4: .386
+5: .model flat,stdcall
+6: .stack 4096
+7: ExitProcess PROTO, dwExitCode:DWORD
+8:
+9:.code
+10: main PROC
+11:     mov     eax,5   ; move 5 to the eax register
+12:     add     eax,6   ; add 6 to the eax register
+13:
+14:     INVOKE ExitProcess,0
+15: main ENDP
+16: END main</codebox>
+			<codebox char_offset="733" frame_height="250" frame_width="700" highlight_brackets="True" show_line_numbers="False" syntax_highlighting="sh" width_in_pixels="True">; Program template (Template.asm)
+.386
+.model flat,stdcall
+.stack 4096
+ExitProcess PROTO, dwExitCode:DWORD
+
+.data
+    ; declare variables here
+.code
+main PROC
+    ; write your code here
+
+    INVOKE ExitProcess,0
+main ENDP
+END main</codebox>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="3.3 Assembling, Linking, and Running Programs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1609631962.34" ts_lastsave="1609632642.83" unique_id="18">
+			<rich_text>The source .asm file cannot be executed directly. Instead, it has to be assembled into executable code. In fact, an assembler is very similar to a compiler. The assembler produces a file containing machine language called an object file. This file isn't quite ready to execute. It must be passed to another program called a linker, which in turn produces an executable file. This file is ready to execute from the operating system's command prompt.
+
+The Assemble-Link-Execute Cycle
+
+Step 1: A programmer uses a text editor to create an ASCII text file named the source file
+Step 2: The assembler reads the source file and produces an object file, a machine language translation of the program. Optionally, it produces a listing file.
+Step 3: The linker reads the object file and checks to see if the program contains any calls to procedures in a link library. The linker copies any required procedures from the link library, combines them with the object file, and produces an executable file.
+Step 4: The operating system loader utility reads the executable file into memory and branches the CPU to the program's starting address, and the program begins to execute.
+
+Section Review:
+1. Object files and optionally listing files
+2. True
+3. </rich_text>
 		</node>
 	</node>
 </cherrytree>

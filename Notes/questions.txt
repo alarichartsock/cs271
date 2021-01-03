@@ -1,0 +1,6 @@
+Questions to ask on lecture:
+
+	Does WriteString always print out from edx?
+	What does CrLf do?
+	What does OFFSET do?
+	Why does moving 32 into ECX cause the program to wait for user input?
